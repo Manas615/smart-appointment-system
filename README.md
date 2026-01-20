@@ -58,3 +58,23 @@ To build a reliable, user-friendly, and scalable appointment management system t
 - Scalability and security enhancements are planned for future versions  
 
 ---
+## MoSCoW Prioritization
+
+Must Have  
+- View available slots  
+- Book appointment  
+- Manage availability  
+- Prevent double booking  
+
+Should Have  
+- Cancel appointment  
+- View appointment history  
+- Admin overview dashboard  
+
+Could Have  
+- Notifications  
+- Reports and analytics  
+
+Won’t Have  
+- Payment processing  
+- External calendar integration  
