@@ -1,5 +1,6 @@
-# smart-appointment-system
-The Smart Appointment &amp; Resource Allocation System is a web-based application that allows users to view available time slots, book appointments and manage cancellations, while service providers and administrators manage availability and resources.
+# Smart Appointment & Resource Allocation System
+
+The Smart Appointment & Resource Allocation System is a web-based application that allows users to view available time slots, book appointments and manage cancellations, while service providers and administrators manage availability and resources.
 
 ## Project Overview
 The Smart Appointment System is a web-based application designed to simplify and automate appointment scheduling between users and service providers. The system provides a centralized platform where users can view availability, book appointments, and receive confirmations, while service providers can manage schedules efficiently. The application follows modern software engineering practices, including containerization, CI/CD, and modular frontend–backend architecture.
@@ -36,6 +37,78 @@ To build a reliable, user-friendly, and scalable appointment management system t
 
 ---
 
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 19 + Vite + Tailwind CSS |
+| Backend | Express.js (Node.js) |
+| Database | SQLite (better-sqlite3) |
+| DevOps | Docker Compose + GitHub Actions CI |
+
+---
+
+## Software Design
+
+The system follows a **3-tier Layered (Client-Server) architecture** with clear separation between Presentation, Business Logic, and Data layers. Design decisions prioritize **modularity** (each route module handles one domain entity), **low coupling** (frontend communicates with the backend only through a centralized API abstraction), and **high cohesion** (every component has a single, well-defined responsibility).
+
+### Architecture Diagram
+
+![Architecture Diagram](docs/design/architecture-diagram.png)
+
+> **Editable source:** [`docs/design/architecture.drawio`](docs/design/architecture.drawio)
+
+### ER Diagram
+
+![ER Diagram](docs/design/er-diagram.png)
+
+### UI Screens
+
+| Page | Description |
+|------|-------------|
+| Home | Hero section with gradient background, feature cards, and CTA buttons |
+| Providers | Card grid with color-coded specialties and direct "Book" button |
+| Booking | Multi-step wizard: Provider → Service → Date & Time → Details → Confirmation |
+| My Appointments | Email-based lookup, appointment cards with status badges, cancel option |
+
+> **Full design document:** [`docs/design/DESIGN.md`](docs/design/DESIGN.md)
+
+### Key Design Decisions
+1. **Separated route modules by domain** — Low coupling; adding features doesn't modify existing code  
+2. **Centralized API abstraction** (`api.js`) — All backend communication flows through one file  
+3. **Transactional booking** — SQLite transactions prevent double-booking race conditions  
+4. **Centralized error handling** — Consistent JSON error responses across all endpoints  
+
+---
+
+## Quick Start
+
+### Prerequisites
+- Node.js 18+
+- npm
+
+### Run Locally
+
+```bash
+
+cd backend
+npm install
+node seed.js      
+npm start         
+
+cd frontend
+npm install
+npm run dev       
+```
+
+### Run with Docker
+
+```bash
+docker-compose up --build
+```
+
+---
+
 ## Success Metrics
 - Successful booking and retrieval of appointments without conflicts  
 - System availability verified through health-check APIs  
@@ -58,23 +131,24 @@ To build a reliable, user-friendly, and scalable appointment management system t
 - Scalability and security enhancements are planned for future versions  
 
 ---
+
 ## MoSCoW Prioritization
 
-Must Have  
+**Must Have**  
 - View available slots  
 - Book appointment  
 - Manage availability  
 - Prevent double booking  
 
-Should Have  
+**Should Have**  
 - Cancel appointment  
 - View appointment history  
 - Admin overview dashboard  
 
-Could Have  
+**Could Have**  
 - Notifications  
 - Reports and analytics  
 
-Won’t Have  
+**Won't Have**  
 - Payment processing  
 - External calendar integration  
