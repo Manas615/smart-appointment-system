@@ -1,22 +1,34 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastProvider } from "./components/Toast";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Providers from "./pages/Providers";
+import Book from "./pages/Book";
+import MyAppointments from "./pages/MyAppointments";
+import Dashboard from "./pages/Dashboard";
+import "./App.css";
+
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-200">
-      <div className="bg-white rounded-2xl shadow-xl p-10 w-full max-w-md text-center">
-        
-        <h1 className="text-3xl font-extrabold text-gray-800 mb-4">
-          Smart Appointment System
-        </h1>
-
-        <p className="text-gray-600 mb-6">
-          Book and manage appointments efficiently with real-time availability.
-        </p>
-
-        <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200">
-          Book Appointment
-        </button>
-
-      </div>
-    </div>
+    <BrowserRouter>
+      <ToastProvider>
+        <div className="app">
+          <Navbar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/providers" element={<Providers />} />
+              <Route path="/book" element={<Book />} />
+              <Route path="/my-appointments" element={<MyAppointments />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+          </main>
+          <footer className="app-footer">
+            <p>© 2026 SmartAppoint — Smart Appointment & Resource Allocation System</p>
+          </footer>
+        </div>
+      </ToastProvider>
+    </BrowserRouter>
   );
 }
 
