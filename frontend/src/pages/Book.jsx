@@ -27,7 +27,6 @@ export default function Book() {
         notes: "",
     });
 
-    // Load providers on mount
     useEffect(() => {
         api.getProviders().then((data) => {
             setProviders(data);
@@ -41,7 +40,6 @@ export default function Book() {
         });
     }, [preselectedProvider]);
 
-    // Load services when provider changes
     useEffect(() => {
         if (form.provider) {
             setLoading(true);
@@ -52,14 +50,12 @@ export default function Book() {
         }
     }, [form.provider]);
 
-    // Load available dates when provider changes
     useEffect(() => {
         if (form.provider) {
             api.getAvailableDates(form.provider.id).then(setDates);
         }
     }, [form.provider]);
 
-    // Load slots when date changes
     useEffect(() => {
         if (form.provider && form.date) {
             setLoading(true);
@@ -110,7 +106,7 @@ export default function Book() {
         return (
             <div className="page-container">
                 <div className="booking-success">
-                    <div className="success-icon">✅</div>
+                    <div className="success-icon">Booked</div>
                     <h2>Appointment Booked!</h2>
                     <div className="success-details">
                         <p><strong>Provider:</strong> {success.provider_name}</p>
@@ -164,7 +160,7 @@ export default function Book() {
                 ))}
             </div>
 
-            {error && <div className="error-message">❌ {error}</div>}
+            {error && <div className="error-message">Error: {error}</div>}
 
             {/* Step 0: Select Provider */}
             {step === 0 && (
@@ -202,8 +198,8 @@ export default function Book() {
                                 >
                                     <h3>{s.name}</h3>
                                     <div className="card-meta">
-                                        <span>⏱️ {s.duration_minutes} min</span>
-                                        <span>💰 ₹{s.price}</span>
+                                        <span>{s.duration_minutes} min</span>
+                                        <span>Rs.{s.price}</span>
                                     </div>
                                 </button>
                             ))}
@@ -323,7 +319,7 @@ export default function Book() {
                         </div>
                         <div className="summary-row total">
                             <span>Price</span>
-                            <span>₹{form.service?.price}</span>
+                            <span>Rs.{form.service?.price}</span>
                         </div>
                     </div>
 

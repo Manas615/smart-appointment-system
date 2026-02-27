@@ -7,7 +7,7 @@ export default function MyAppointments() {
     const [appointments, setAppointments] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searched, setSearched] = useState(false);
-    const [reviewModal, setReviewModal] = useState(null); // appointment id
+    const [reviewModal, setReviewModal] = useState(null);
     const [reviewRating, setReviewRating] = useState(5);
     const [reviewComment, setReviewComment] = useState("");
     const [rescheduleModal, setRescheduleModal] = useState(null);
@@ -110,7 +110,6 @@ export default function MyAppointments() {
 
             <form onSubmit={lookup} className="lookup-form">
                 <div className="lookup-input-group">
-                    <span className="lookup-icon">📧</span>
                     <input
                         type="email"
                         placeholder="Enter your email address"
@@ -127,7 +126,6 @@ export default function MyAppointments() {
 
             {searched && !loading && appointments.length === 0 && (
                 <div className="empty-state">
-                    <span className="empty-icon">📋</span>
                     <p>No appointments found for this email</p>
                 </div>
             )}
@@ -138,25 +136,25 @@ export default function MyAppointments() {
                         <div className="appointment-header">
                             <h3>{a.service_name}</h3>
                             <span className={`status-badge ${a.status}`}>
-                                {a.status === "confirmed" ? "✅ Confirmed" : "❌ Cancelled"}
+                                {a.status === "confirmed" ? "Confirmed" : "Cancelled"}
                             </span>
                         </div>
                         <div className="appointment-details">
                             <div className="detail-row">
-                                <span className="detail-label">👨‍⚕️ Provider</span>
+                                <span className="detail-label">Provider</span>
                                 <span>{a.provider_name} · {a.specialty}</span>
                             </div>
                             <div className="detail-row">
-                                <span className="detail-label">📅 Date & Time</span>
+                                <span className="detail-label">Date & Time</span>
                                 <span>{a.date} • {a.start_time} – {a.end_time}</span>
                             </div>
                             <div className="detail-row">
-                                <span className="detail-label">💰 Price</span>
+                                <span className="detail-label">Price</span>
                                 <span>${a.price} · {a.duration_minutes} min</span>
                             </div>
                             {a.notes && (
                                 <div className="detail-row">
-                                    <span className="detail-label">📝 Notes</span>
+                                    <span className="detail-label">Notes</span>
                                     <span>{a.notes}</span>
                                 </div>
                             )}
@@ -164,10 +162,10 @@ export default function MyAppointments() {
                         {a.status === "confirmed" && (
                             <div className="appointment-actions">
                                 <button className="btn btn-outline" onClick={() => openReschedule(a)}>
-                                    🔄 Reschedule
+                                    Reschedule
                                 </button>
                                 <button className="btn btn-primary btn-sm" onClick={() => setReviewModal(a.id)}>
-                                    ⭐ Leave Review
+                                    Leave Review
                                 </button>
                                 <button className="btn btn-danger" onClick={() => cancelAppointment(a.id)}>
                                     Cancel
@@ -217,7 +215,7 @@ export default function MyAppointments() {
             {rescheduleModal && (
                 <div className="modal-overlay" onClick={() => setRescheduleModal(null)}>
                     <div className="modal modal-lg" onClick={(e) => e.stopPropagation()}>
-                        <h2>🔄 Reschedule Appointment</h2>
+                        <h2>Reschedule Appointment</h2>
                         <p className="modal-subtitle">Select a new date and time</p>
 
                         <div className="reschedule-dates">

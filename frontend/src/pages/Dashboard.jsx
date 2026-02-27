@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { api } from "../api";
 
 const statCards = [
-    { key: "totalProviders", label: "Providers", icon: "👨‍⚕️", color: "#6366f1" },
-    { key: "totalServices", label: "Services", icon: "🏥", color: "#0ea5e9" },
-    { key: "totalAppointments", label: "Total Bookings", icon: "📅", color: "#10b981" },
-    { key: "confirmedAppointments", label: "Confirmed", icon: "✅", color: "#22c55e" },
-    { key: "cancelledAppointments", label: "Cancelled", icon: "❌", color: "#ef4444" },
-    { key: "todayAppointments", label: "Today", icon: "📌", color: "#f59e0b" },
-    { key: "availableSlots", label: "Open Slots", icon: "🕐", color: "#8b5cf6" },
-    { key: "averageRating", label: "Avg Rating", icon: "⭐", color: "#ec4899", suffix: "/5" },
+    { key: "totalProviders", label: "Providers", color: "#6366f1" },
+    { key: "totalServices", label: "Services", color: "#0ea5e9" },
+    { key: "totalAppointments", label: "Total Bookings", color: "#10b981" },
+    { key: "confirmedAppointments", label: "Confirmed", color: "#22c55e" },
+    { key: "cancelledAppointments", label: "Cancelled", color: "#ef4444" },
+    { key: "todayAppointments", label: "Today", color: "#f59e0b" },
+    { key: "availableSlots", label: "Open Slots", color: "#8b5cf6" },
+    { key: "averageRating", label: "Avg Rating", color: "#ec4899", suffix: "/5" },
 ];
 
 export default function Dashboard() {
@@ -47,7 +47,7 @@ export default function Dashboard() {
     return (
         <div className="page-container">
             <div className="page-header">
-                <h1>📊 Dashboard</h1>
+                <h1>Dashboard</h1>
                 <p>System analytics and appointment insights</p>
             </div>
 
@@ -56,7 +56,7 @@ export default function Dashboard() {
                 {statCards.map((card) => (
                     <div className="dashboard-stat-card" key={card.key}>
                         <div className="stat-card-icon" style={{ background: `${card.color}18`, color: card.color }}>
-                            {card.icon}
+                            {card.label.charAt(0)}
                         </div>
                         <div className="stat-card-info">
                             <span className="stat-card-value">
@@ -71,7 +71,7 @@ export default function Dashboard() {
             <div className="dashboard-grid">
                 {/* Recent Appointments */}
                 <div className="dashboard-panel">
-                    <h2>🕐 Recent Appointments</h2>
+                    <h2>Recent Appointments</h2>
                     {recent.length === 0 ? (
                         <p className="no-data">No appointments yet</p>
                     ) : (
@@ -80,7 +80,7 @@ export default function Dashboard() {
                                 <div className="recent-item" key={a.id}>
                                     <div className="recent-item-main">
                                         <strong>{a.patient_name}</strong>
-                                        <span className="recent-item-provider">→ {a.provider_name}</span>
+                                        <span className="recent-item-provider">{a.provider_name}</span>
                                     </div>
                                     <div className="recent-item-meta">
                                         <span>{a.date} • {a.start_time}</span>
@@ -96,7 +96,7 @@ export default function Dashboard() {
 
                 {/* Popular Providers */}
                 <div className="dashboard-panel">
-                    <h2>🏆 Provider Leaderboard</h2>
+                    <h2>Provider Leaderboard</h2>
                     <div className="leaderboard">
                         {popular.map((p, i) => (
                             <div className="leaderboard-item" key={p.id}>
@@ -107,7 +107,7 @@ export default function Dashboard() {
                                 </div>
                                 <div className="leaderboard-stats">
                                     <span>{p.appointment_count} bookings</span>
-                                    {p.avg_rating && <span>⭐ {p.avg_rating}</span>}
+                                    {p.avg_rating && <span>{p.avg_rating} / 5</span>}
                                 </div>
                             </div>
                         ))}
@@ -116,7 +116,7 @@ export default function Dashboard() {
 
                 {/* Specialty Distribution */}
                 <div className="dashboard-panel">
-                    <h2>📈 Bookings by Specialty</h2>
+                    <h2>Bookings by Specialty</h2>
                     <div className="bar-chart">
                         {distribution.map((d) => (
                             <div className="bar-chart-row" key={d.specialty}>

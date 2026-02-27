@@ -11,15 +11,6 @@ const specialtyColors = {
     Cardiology: "#ec4899",
 };
 
-const specialtyIcons = {
-    "General Medicine": "🩺",
-    Dentistry: "🦷",
-    Dermatology: "🧴",
-    Orthopedics: "🦴",
-    Pediatrics: "👶",
-    Cardiology: "❤️",
-};
-
 export default function Providers() {
     const [providers, setProviders] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -33,7 +24,6 @@ export default function Providers() {
             .getProviders()
             .then(async (data) => {
                 setProviders(data);
-                // Fetch reviews for each provider in parallel
                 const reviewData = {};
                 await Promise.all(
                     data.map(async (p) => {
@@ -78,7 +68,7 @@ export default function Providers() {
     if (error)
         return (
             <div className="page-container">
-                <div className="error-message">❌ {error}</div>
+                <div className="error-message">Error: {error}</div>
             </div>
         );
 
@@ -92,7 +82,6 @@ export default function Providers() {
             {/* Search & Filter Bar */}
             <div className="search-filter-bar">
                 <div className="search-box">
-                    <span className="search-icon">🔍</span>
                     <input
                         type="text"
                         placeholder="Search by name, specialty, or keywords..."
@@ -116,7 +105,7 @@ export default function Providers() {
                                     : {}
                             }
                         >
-                            {s !== "All" && (specialtyIcons[s] || "•")} {s}
+                            {s}
                         </button>
                     ))}
                 </div>
@@ -124,7 +113,6 @@ export default function Providers() {
 
             {filtered.length === 0 ? (
                 <div className="empty-state">
-                    <span className="empty-icon">🔍</span>
                     <p>No providers match your search criteria</p>
                     <button className="btn btn-outline" onClick={() => { setSearch(""); setSelectedSpecialty("All"); }}>
                         Clear Filters
@@ -143,8 +131,14 @@ export default function Providers() {
                                     }}
                                 />
                                 <div className="provider-card-body">
-                                    <div className="provider-avatar">
-                                        {specialtyIcons[provider.specialty] || "👤"}
+                                    <div
+                                        className="provider-avatar"
+                                        style={{
+                                            background: `${specialtyColors[provider.specialty] || "#6366f1"}20`,
+                                            color: specialtyColors[provider.specialty] || "#6366f1",
+                                        }}
+                                    >
+                                        {provider.name.charAt(0)}
                                     </div>
                                     <h3 className="provider-name">{provider.name}</h3>
                                     <span
@@ -169,8 +163,8 @@ export default function Providers() {
                                     )}
                                     <p className="provider-bio">{provider.bio}</p>
                                     <div className="provider-contact">
-                                        <span>📧 {provider.email}</span>
-                                        {provider.phone && <span>📱 {provider.phone}</span>}
+                                        <span>{provider.email}</span>
+                                        {provider.phone && <span>{provider.phone}</span>}
                                     </div>
                                     <Link
                                         to={`/book?provider=${provider.id}`}

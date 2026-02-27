@@ -2,32 +2,26 @@ import { Link } from "react-router-dom";
 
 const features = [
     {
-        icon: "🗓️",
         title: "Easy Scheduling",
         desc: "Browse available providers and book appointments in just a few clicks.",
     },
     {
-        icon: "⚡",
         title: "Real-Time Availability",
         desc: "See live time slots and never worry about double bookings.",
     },
     {
-        icon: "🔔",
         title: "Instant Confirmation",
         desc: "Get immediate booking confirmation with all appointment details.",
     },
     {
-        icon: "🛡️",
         title: "Easy Cancellation",
         desc: "Cancel or reschedule appointments hassle-free whenever you need.",
     },
     {
-        icon: "👨‍⚕️",
         title: "Expert Providers",
         desc: "Choose from a wide range of qualified specialists across fields.",
     },
     {
-        icon: "📊",
         title: "Track History",
         desc: "View your complete appointment history and manage upcoming visits.",
     },
@@ -44,7 +38,7 @@ export default function Home() {
                     <div className="shape shape-3"></div>
                 </div>
                 <div className="hero-content">
-                    <span className="hero-badge">✨ Smart Scheduling Platform</span>
+                    <span className="hero-badge">Smart Scheduling Platform</span>
                     <h1 className="hero-title">
                         Book Appointments
                         <br />
@@ -56,10 +50,10 @@ export default function Home() {
                     </p>
                     <div className="hero-actions">
                         <Link to="/book" className="btn btn-primary btn-lg">
-                            📅 Book Now
+                            Book Now
                         </Link>
                         <Link to="/providers" className="btn btn-outline btn-lg">
-                            View Providers →
+                            View Providers
                         </Link>
                     </div>
                     <div className="hero-stats">
@@ -88,7 +82,6 @@ export default function Home() {
                 <div className="features-grid">
                     {features.map((f, i) => (
                         <div className="feature-card" key={i} style={{ animationDelay: `${i * 0.1}s` }}>
-                            <div className="feature-icon">{f.icon}</div>
                             <h3>{f.title}</h3>
                             <p>{f.desc}</p>
                         </div>
@@ -101,7 +94,7 @@ export default function Home() {
                 <h2>Ready to Get Started?</h2>
                 <p>Book your first appointment today and experience hassle-free scheduling.</p>
                 <Link to="/book" className="btn btn-primary btn-lg">
-                    Book Your Appointment →
+                    Book Your Appointment
                 </Link>
             </section>
         </div>
