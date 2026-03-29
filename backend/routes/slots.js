@@ -16,8 +16,12 @@ router.get(
 
         const { providerId } = req.params;
         const { date } = req.query;
+        const showAll = req.query.all === "1";
 
-        let sql = "SELECT * FROM time_slots WHERE provider_id = ? AND is_available = 1";
+        let sql = "SELECT * FROM time_slots WHERE provider_id = ?";
+        if (!showAll) {
+            sql += " AND is_available = 1";
+        }
         const params = [providerId];
 
         if (date) {
@@ -90,5 +94,24 @@ router.post(
         }
     }
 );
+
+// DELETE /api/slots/:id — remove a time slot (issue #10)
+router.delete("/:id", (req, res, next) => {
+    const slot = db.prepare("SELECT * FROM time_slots WHERE id = ?").get(req.params.id);
+    if (!slot) {
+        const err = new Error("Time slot not found");
+        err.status = 404;
+        return next(err);
+    }
+
+    if (!slot.is_available) {
+        const err = new Error("Cannot delete a slot that is already booked");
+        err.status = 400;
+        return next(err);
+    }
+
+    db.prepare("DELETE FROM time_slots WHERE id = ?").run(req.params.id);
+    res.json({ message: "Time slot deleted", id: Number(req.params.id) });
+});
 
 module.exports = router;

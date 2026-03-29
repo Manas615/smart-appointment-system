@@ -7,6 +7,8 @@ import Providers from "./pages/Providers";
 import Book from "./pages/Book";
 import MyAppointments from "./pages/MyAppointments";
 import Dashboard from "./pages/Dashboard";
+import Schedule from "./pages/Schedule";
+import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import "./App.css";
 
@@ -74,6 +76,22 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/schedule"
+        element={
+          <ProtectedRoute path="/schedule">
+            <Schedule />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute path="/admin">
+            <Admin />
+          </ProtectedRoute>
+        }
+      />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
@@ -100,3 +118,4 @@ function App() {
 }
 
 export default App;
+

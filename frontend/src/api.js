@@ -50,4 +50,22 @@ export const api = {
     getRecentAppointments: () => request("/dashboard/recent"),
     getPopularProviders: () => request("/dashboard/popular-providers"),
     getSpecialtyDistribution: () => request("/dashboard/specialty-distribution"),
+
+    // Provider Schedule (issues #12, #13)
+    getProviderSchedule: (providerId, date) =>
+        request(`/appointments/provider/${providerId}${date ? `?date=${date}` : ""}`),
+    getAllSlots: (providerId, date) =>
+        request(`/slots/provider/${providerId}?date=${date}&all=1`),
+
+    // Slot Management (issue #10)
+    deleteSlot: (slotId) => request(`/slots/${slotId}`, { method: "DELETE" }),
+
+    // Admin (issues #16, #17, #18, #19)
+    adminGetAppointments: () => request("/admin/appointments"),
+    adminDeleteAppointment: (id) => request(`/admin/appointments/${id}`, { method: "DELETE" }),
+    adminUpdateProvider: (id, data) =>
+        request(`/admin/providers/${id}`, { method: "PUT", body: JSON.stringify(data) }),
+    adminDeleteProvider: (id) => request(`/admin/providers/${id}`, { method: "DELETE" }),
+    adminGetReports: () => request("/admin/reports"),
+    adminGetActivity: () => request("/admin/activity"),
 };

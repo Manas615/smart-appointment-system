@@ -22,6 +22,12 @@ const roles = [
         description: "View your schedule, check the dashboard, and manage availability.",
         color: "#10b981",
     },
+    {
+        key: "admin",
+        label: "Admin",
+        description: "Full system access: manage providers, view reports, and monitor activity.",
+        color: "#f59e0b",
+    },
 ];
 
 export default function Login() {

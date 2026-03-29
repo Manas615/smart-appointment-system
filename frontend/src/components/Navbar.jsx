@@ -9,6 +9,8 @@ const allNavLinks = [
     { path: "/book", label: "Book" },
     { path: "/my-appointments", label: "My Appointments" },
     { path: "/dashboard", label: "Dashboard" },
+    { path: "/schedule", label: "Schedule" },
+    { path: "/admin", label: "Admin" },
 ];
 
 export default function Navbar() {

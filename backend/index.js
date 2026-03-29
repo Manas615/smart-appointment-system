@@ -10,6 +10,7 @@ const slotsRouter = require("./routes/slots");
 const appointmentsRouter = require("./routes/appointments");
 const reviewsRouter = require("./routes/reviews");
 const dashboardRouter = require("./routes/dashboard");
+const adminRouter = require("./routes/admin");
 const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
@@ -31,6 +32,7 @@ app.use("/api/slots", slotsRouter);
 app.use("/api/appointments", appointmentsRouter);
 app.use("/api/reviews", reviewsRouter);
 app.use("/api/dashboard", dashboardRouter);
+app.use("/api/admin", adminRouter);
 
 // 404 handler for unknown API routes
 app.use("/api/{*path}", (req, res) => {

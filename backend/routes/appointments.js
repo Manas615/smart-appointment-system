@@ -201,5 +201,33 @@ router.patch(
     }
 );
 
+// GET /api/appointments/provider/:providerId — provider schedule (issues #12, #13)
+router.get("/provider/:providerId", (req, res) => {
+    const { date } = req.query;
+    const todayStr = new Date().toISOString().split("T")[0];
+
+    let sql = `SELECT a.*, p.name as provider_name, p.specialty, s.name as service_name,
+                      s.duration_minutes, s.price, t.date, t.start_time, t.end_time
+               FROM appointments a
+               JOIN providers p ON a.provider_id = p.id
+               JOIN services s ON a.service_id = s.id
+               JOIN time_slots t ON a.slot_id = t.id
+               WHERE a.provider_id = ? AND a.status = 'confirmed'`;
+    const params = [req.params.providerId];
+
+    if (date) {
+        sql += " AND t.date = ?";
+        params.push(date);
+    } else {
+        sql += " AND t.date >= ?";
+        params.push(todayStr);
+    }
+
+    sql += " ORDER BY t.date ASC, t.start_time ASC";
+
+    const appointments = db.prepare(sql).all(...params);
+    res.json(appointments);
+});
+
 module.exports = router;
 

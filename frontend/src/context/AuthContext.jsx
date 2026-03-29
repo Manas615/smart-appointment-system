@@ -47,12 +47,14 @@ export function useAuth() {
 // Role-based access config
 export const ROLE_ACCESS = {
     client: ["/", "/providers", "/book", "/my-appointments"],
-    receptionist: ["/", "/providers", "/book", "/dashboard"],
-    doctor: ["/", "/providers", "/dashboard"],
+    receptionist: ["/", "/providers", "/book", "/dashboard", "/admin"],
+    doctor: ["/", "/providers", "/dashboard", "/schedule"],
+    admin: ["/", "/providers", "/book", "/my-appointments", "/dashboard", "/schedule", "/admin"],
 };
 
 export const ROLE_LABELS = {
     client: "Client",
     receptionist: "Receptionist",
     doctor: "Doctor",
+    admin: "Admin",
 };
