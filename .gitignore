@@ -1,8 +1,38 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Environment
 .env
-dist
-build
+.env.*
+
+# Build output
+dist/
+build/
+
+# Editor temp files
 *.swp
 *.swo
 *.tmp
+
+# SQLite
 *.db
+*.db-shm
+*.db-wal
+*.db-journal
+
+# OS files
+.DS_Store
+Thumbs.db
+nul
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# Python
+__pycache__/
+*.pyc
