@@ -67,7 +67,7 @@ export default function MyAppointments() {
         try {
             const dates = await api.getAvailableDates(appointment.provider_id);
             setAvailableDates(dates);
-        } catch (err) {
+        } catch {
             toast.error("Could not load available dates");
         }
     };
@@ -78,7 +78,7 @@ export default function MyAppointments() {
         try {
             const slots = await api.getSlots(rescheduleModal.provider_id, date);
             setAvailableSlots(slots);
-        } catch (err) {
+        } catch {
             toast.error("Could not load time slots");
         }
     };

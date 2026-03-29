@@ -144,13 +144,15 @@ function ProvidersTab() {
     const toast = useToast();
 
     const loadProviders = () => {
-        setLoading(true);
         api.getProviders()
             .then(setProviders)
             .finally(() => setLoading(false));
     };
 
-    useEffect(loadProviders, []);
+    useEffect(() => {
+        loadProviders();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const openEdit = (p) => {
         setForm({ name: p.name, specialty: p.specialty, email: p.email, phone: p.phone || "", bio: p.bio || "" });

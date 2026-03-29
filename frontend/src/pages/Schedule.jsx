@@ -17,22 +17,35 @@ export default function Schedule() {
     // Load upcoming appointments for this provider
     useEffect(() => {
         if (!providerId) return;
-        setLoading(true);
-        const params = selectedDate ? `?date=${selectedDate}` : "";
-        api.getProviderSchedule(providerId, selectedDate || null)
-            .then(setAppointments)
-            .catch((err) => toast.error(err.message))
-            .finally(() => setLoading(false));
-    }, [providerId, selectedDate]);
+        const fetchSchedule = async () => {
+            setLoading(true);
+            try {
+                const data = await api.getProviderSchedule(providerId, selectedDate || null);
+                setAppointments(data);
+            } catch (err) {
+                toast.error(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchSchedule();
+    }, [providerId, selectedDate, toast]);
 
     // Load slots for the selected date
     useEffect(() => {
         if (!providerId || !selectedDate) return;
-        setSlotsLoading(true);
-        api.getAllSlots(providerId, selectedDate)
-            .then(setSlots)
-            .catch(() => {})
-            .finally(() => setSlotsLoading(false));
+        const fetchSlots = async () => {
+            setSlotsLoading(true);
+            try {
+                const data = await api.getAllSlots(providerId, selectedDate);
+                setSlots(data);
+            } catch {
+                // ignore
+            } finally {
+                setSlotsLoading(false);
+            }
+        };
+        fetchSlots();
     }, [providerId, selectedDate]);
 
     const deleteSlot = async (slotId) => {
