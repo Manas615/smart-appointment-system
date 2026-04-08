@@ -2,14 +2,16 @@ const Database = require("better-sqlite3");
 const path = require("path");
 
 const dbPath = path.join(__dirname, "appointments.db");
-const db = new Database(dbPath);
+
+// Default to the real database
+let activeDb = new Database(dbPath);
 
 // Enable WAL mode for better concurrency
-db.pragma("journal_mode = WAL");
-db.pragma("foreign_keys = ON");
+activeDb.pragma("journal_mode = WAL");
+activeDb.pragma("foreign_keys = ON");
 
 // Create tables
-db.exec(`
+activeDb.exec(`
   CREATE TABLE IF NOT EXISTS providers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -68,4 +70,18 @@ db.exec(`
   );
 `);
 
-module.exports = db;
+// Export a proxy so we can mathematically guarantee DI works seamlessly in tests
+const dbProxy = new Proxy({}, {
+    get(target, prop) {
+        if (prop === 'setTestDb') {
+            return function(testDb) { activeDb = testDb; };
+        }
+        const val = activeDb[prop];
+        if (typeof val === 'function') {
+            return val.bind(activeDb);
+        }
+        return val;
+    }
+});
+
+module.exports = dbProxy;

@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+const morgan = require("morgan");
 
 // Initialize database (creates tables on first require)
-require("./db");
+const db = require("./db");
 
 const providersRouter = require("./routes/providers");
 const servicesRouter = require("./routes/services");
@@ -17,6 +18,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+const morganFormat = process.env.NODE_ENV === "production" ? "combined" : "dev";
+app.use(morgan(morganFormat));
 app.use(cors());
 app.use(express.json());
 
@@ -42,6 +45,10 @@ app.use("/api/{*path}", (req, res) => {
 // Error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`✅ Backend running on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`✅ Backend running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

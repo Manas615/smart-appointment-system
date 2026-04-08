@@ -1,0 +1,23 @@
+{
+  "packageManager": "npm",
+  "reporters": ["html", "clear-text", "progress"],
+  "testRunner": "jest",
+  "coverageAnalysis": "all",
+  "mutate": [
+    "routes/appointments.js"
+  ],
+  "jest": {
+    "projectType": "custom",
+    "configFile": "jest.config.js",
+    "enableFindRelatedTests": false
+  },
+  "thresholds": {
+    "high": 60,
+    "low": 40,
+    "break": 10
+  },
+  "htmlReporter": {
+    "fileName": "reports/mutation/mutation.html"
+  },
+  "timeoutMS": 15000
+}

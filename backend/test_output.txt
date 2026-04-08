@@ -1,0 +1,222 @@
+
+> smart-appointment-backend@1.0.0 test
+> jest
+
+FAIL tests/health.test.js
+  ● Test suite failed to run
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       7 | const dbInstance = new Database(":memory:");
+       8 | const dbProxy = require("../db");
+    >  9 | dbProxy.setTestDb(dbInstance);
+         |         ^
+      10 |
+      11 | const app = require("../index");
+      12 |
+
+      at Object.setTestDb (tests/health.test.js:9:9)
+
+FAIL tests/appointments.test.js
+  Appointments API
+    POST /api/appointments
+      ✕ books a valid appointment and returns 201 (20 ms)
+      ✕ returns 400 when required fields are missing (1 ms)
+      ✕ returns 400 for invalid email format (1 ms)
+      ✕ returns 409 when booking the same slot twice (double-booking prevention) (1 ms)
+      ✕ returns 404 for a non-existent slot (1 ms)
+    PATCH /api/appointments/:id/cancel
+      ✕ cancels an existing appointment and returns updated record (1 ms)
+      ✕ frees the slot after cancellation (1 ms)
+      ✕ returns 404 for a non-existent appointment (1 ms)
+      ✕ returns 400 when cancelling an already-cancelled appointment (1 ms)
+    GET /api/appointments
+      ✕ returns appointments for a valid email (1 ms)
+      ✕ returns empty array for an email with no appointments (1 ms)
+      ✕ returns 400 for an invalid email query param (1 ms)
+
+  ● Appointments API › POST /api/appointments › books a valid appointment and returns 201
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › POST /api/appointments › returns 400 when required fields are missing
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › POST /api/appointments › returns 400 for invalid email format
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › POST /api/appointments › returns 409 when booking the same slot twice (double-booking prevention)
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › POST /api/appointments › returns 404 for a non-existent slot
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › PATCH /api/appointments/:id/cancel › cancels an existing appointment and returns updated record
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › PATCH /api/appointments/:id/cancel › frees the slot after cancellation
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › PATCH /api/appointments/:id/cancel › returns 404 for a non-existent appointment
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › PATCH /api/appointments/:id/cancel › returns 400 when cancelling an already-cancelled appointment
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › GET /api/appointments › returns appointments for a valid email
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › GET /api/appointments › returns empty array for an email with no appointments
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+  ● Appointments API › GET /api/appointments › returns 400 for an invalid email query param
+
+    TypeError: dbProxy.setTestDb is not a function
+
+       99 | function buildApp(dbInstance) {
+      100 |   const dbProxy = require("../db");
+    > 101 |   dbProxy.setTestDb(dbInstance);
+          |           ^
+      102 |   return require("../index");
+      103 | }
+      104 |
+
+      at setTestDb (tests/appointments.test.js:101:11)
+      at Object.buildApp (tests/appointments.test.js:112:11)
+
+Test Suites: 2 failed, 2 total
+Tests:       12 failed, 12 total
+Snapshots:   0 total
+Time:        1.358 s, estimated 2 s
+Ran all test suites.
