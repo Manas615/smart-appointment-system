@@ -166,11 +166,13 @@ describe("Appointments API", () => {
 
       await request(app).post("/api/appointments").send(payload);
 
-      const res = await request(app).post("/api/appointments").send({
-        ...payload,
-        patient_name: "Bob",
-        patient_email: "bob@example.com",
-      });
+      const res = await request(app)
+        .post("/api/appointments")
+        .send({
+          ...payload,
+          patient_name: "Bob",
+          patient_email: "bob@example.com",
+        });
 
       expect(res.statusCode).toBe(409);
     });

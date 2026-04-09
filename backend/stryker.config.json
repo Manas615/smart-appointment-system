@@ -3,9 +3,7 @@
   "reporters": ["html", "clear-text", "progress"],
   "testRunner": "jest",
   "coverageAnalysis": "all",
-  "mutate": [
-    "routes/appointments.js"
-  ],
+  "mutate": ["routes/appointments.js"],
   "jest": {
     "projectType": "custom",
     "configFile": "jest.config.js",

@@ -12,7 +12,11 @@
     "mutate": "stryker run",
     "format": "prettier --write \"**/*.{js,json}\" --ignore-path .prettierignore"
   },
-  "keywords": ["appointment", "scheduling", "api"],
+  "keywords": [
+    "appointment",
+    "scheduling",
+    "api"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

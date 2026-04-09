@@ -71,17 +71,22 @@ activeDb.exec(`
 `);
 
 // Export a proxy so we can mathematically guarantee DI works seamlessly in tests
-const dbProxy = new Proxy({}, {
+const dbProxy = new Proxy(
+  {},
+  {
     get(target, prop) {
-        if (prop === 'setTestDb') {
-            return function(testDb) { activeDb = testDb; };
-        }
-        const val = activeDb[prop];
-        if (typeof val === 'function') {
-            return val.bind(activeDb);
-        }
-        return val;
-    }
-});
+      if (prop === "setTestDb") {
+        return function (testDb) {
+          activeDb = testDb;
+        };
+      }
+      const val = activeDb[prop];
+      if (typeof val === "function") {
+        return val.bind(activeDb);
+      }
+      return val;
+    },
+  }
+);
 
 module.exports = dbProxy;

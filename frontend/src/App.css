@@ -250,7 +250,6 @@
 }
 
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0);
@@ -985,7 +984,9 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-lg);
-  animation: slideInRight 0.35s ease, fadeOut 0.35s ease 3.5s forwards;
+  animation:
+    slideInRight 0.35s ease,
+    fadeOut 0.35s ease 3.5s forwards;
   font-size: 0.9rem;
   color: var(--text);
 }
@@ -1148,7 +1149,9 @@
   border-radius: var(--radius);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 
 .dashboard-stat-card:hover {
@@ -1430,7 +1433,9 @@
   font-size: 2rem;
   color: var(--border);
   cursor: pointer;
-  transition: color var(--transition), transform var(--transition);
+  transition:
+    color var(--transition),
+    transform var(--transition);
   padding: 0;
   line-height: 1;
 }
