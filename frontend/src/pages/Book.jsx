@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { api } from "../api";
+import { useAuth } from "../context/AuthContext";
 
 const steps = ["Provider", "Service", "Date & Time", "Your Details", "Confirm"];
 
 export default function Book() {
   const [searchParams] = useSearchParams();
   const preselectedProvider = searchParams.get("provider");
+  const { user } = useAuth();
 
   const [step, setStep] = useState(0);
   const [providers, setProviders] = useState([]);
@@ -22,8 +24,8 @@ export default function Book() {
     service: null,
     date: "",
     slot: null,
-    patient_name: "",
-    patient_email: "",
+    patient_name: user?.name || "",
+    patient_email: user?.email || "",
     notes: "",
   });
 
@@ -78,7 +80,12 @@ export default function Book() {
 
   const selectSlot = (slot) => {
     setForm({ ...form, slot });
-    setStep(3);
+    // If user already has name and email from login, skip the details step
+    if (form.patient_name && form.patient_email) {
+      setStep(3); // Go to details step but it will show as confirm-ready
+    } else {
+      setStep(3);
+    }
   };
 
   const handleSubmit = async () => {
@@ -106,7 +113,7 @@ export default function Book() {
     return (
       <div className="page-container">
         <div className="booking-success">
-          <div className="success-icon">Booked</div>
+          <div className="success-icon">✅</div>
           <h2>Appointment Booked!</h2>
           <div className="success-details">
             <p>
@@ -138,8 +145,8 @@ export default function Book() {
                 service: null,
                 date: "",
                 slot: null,
-                patient_name: "",
-                patient_email: "",
+                patient_name: user?.name || "",
+                patient_email: user?.email || "",
                 notes: "",
               });
             }}
@@ -274,10 +281,19 @@ export default function Book() {
         </div>
       )}
 
-      {/* Step 3: Patient Details */}
+      {/* Step 3: Patient Details + Summary + Confirm */}
       {step === 3 && (
         <div className="booking-step">
-          <h2>Your Details</h2>
+          <h2>Review & Confirm</h2>
+
+          {/* Auto-filled info banner */}
+          {user?.email && (
+            <div className="autofill-banner">
+              <span className="autofill-icon">👤</span>
+              <span>Booking as <strong>{form.patient_name}</strong> ({form.patient_email})</span>
+            </div>
+          )}
+
           <div className="form-group">
             <label htmlFor="patient_name">Full Name *</label>
             <input
@@ -314,10 +330,14 @@ export default function Book() {
 
           {/* Summary */}
           <div className="booking-summary">
-            <h3>Summary</h3>
+            <h3>Appointment Summary</h3>
             <div className="summary-row">
               <span>Provider</span>
               <span>{form.provider?.name}</span>
+            </div>
+            <div className="summary-row">
+              <span>Specialty</span>
+              <span>{form.provider?.specialty}</span>
             </div>
             <div className="summary-row">
               <span>Service</span>
@@ -333,6 +353,10 @@ export default function Book() {
                 {form.slot?.start_time} – {form.slot?.end_time}
               </span>
             </div>
+            <div className="summary-row">
+              <span>Duration</span>
+              <span>{form.service?.duration_minutes} min</span>
+            </div>
             <div className="summary-row total">
               <span>Price</span>
               <span>Rs.{form.service?.price}</span>
@@ -344,7 +368,7 @@ export default function Book() {
             disabled={!form.patient_name || !form.patient_email || loading}
             onClick={handleSubmit}
           >
-            {loading ? "Booking..." : "Confirm Booking"}
+            {loading ? "Booking..." : "✓ Confirm Booking"}
           </button>
         </div>
       )}

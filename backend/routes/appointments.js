@@ -203,7 +203,8 @@ router.patch(
 // GET /api/appointments/provider/:providerId — provider schedule (issues #12, #13)
 router.get("/provider/:providerId", (req, res) => {
   const { date } = req.query;
-  const todayStr = new Date().toISOString().split("T")[0];
+  const now = new Date();
+  const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 
   let sql = `SELECT a.*, p.name as provider_name, p.specialty, s.name as service_name,
                       s.duration_minutes, s.price, t.date, t.start_time, t.end_time

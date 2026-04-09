@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { api } from "../api";
 import { useToast } from "../components/Toast";
+import { useAuth } from "../context/AuthContext";
 
 export default function MyAppointments() {
-  const [email, setEmail] = useState("");
+  const { user } = useAuth();
+  const [email, setEmail] = useState(user?.email || "");
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
@@ -17,18 +19,30 @@ export default function MyAppointments() {
   const [availableDates, setAvailableDates] = useState([]);
   const toast = useToast();
 
-  const lookup = async (e) => {
-    e.preventDefault();
+  const fetchAppointments = useCallback(async (lookupEmail) => {
+    if (!lookupEmail) return;
     setLoading(true);
     setSearched(true);
     try {
-      const data = await api.getAppointments(email);
+      const data = await api.getAppointments(lookupEmail);
       setAppointments(data);
     } catch (err) {
       toast.error(err.message);
     } finally {
       setLoading(false);
     }
+  }, [toast]);
+
+  // Auto-load appointments if user has an email from login
+  useEffect(() => {
+    if (user?.email) {
+      fetchAppointments(user.email);
+    }
+  }, [user?.email, fetchAppointments]);
+
+  const lookup = async (e) => {
+    e.preventDefault();
+    fetchAppointments(email);
   };
 
   const cancelAppointment = async (id) => {
@@ -105,13 +119,21 @@ export default function MyAppointments() {
     }
   };
 
+  const confirmedCount = appointments.filter((a) => a.status === "confirmed").length;
+  const cancelledCount = appointments.filter((a) => a.status === "cancelled").length;
+
   return (
     <div className="page-container">
       <div className="page-header">
         <h1>My Appointments</h1>
-        <p>Look up your appointments by email address</p>
+        <p>
+          {user?.email
+            ? `Showing appointments for ${user.email}`
+            : "Look up your appointments by email address"}
+        </p>
       </div>
 
+      {/* Show lookup form - always visible for flexibility */}
       <form onSubmit={lookup} className="lookup-form">
         <div className="lookup-input-group">
           <input
@@ -128,9 +150,29 @@ export default function MyAppointments() {
         </div>
       </form>
 
+      {/* Stats bar */}
+      {searched && !loading && appointments.length > 0 && (
+        <div className="appointments-stats-bar">
+          <div className="appt-stat">
+            <span className="appt-stat-num">{appointments.length}</span>
+            <span className="appt-stat-label">Total</span>
+          </div>
+          <div className="appt-stat confirmed">
+            <span className="appt-stat-num">{confirmedCount}</span>
+            <span className="appt-stat-label">Confirmed</span>
+          </div>
+          <div className="appt-stat cancelled">
+            <span className="appt-stat-num">{cancelledCount}</span>
+            <span className="appt-stat-label">Cancelled</span>
+          </div>
+        </div>
+      )}
+
       {searched && !loading && appointments.length === 0 && (
         <div className="empty-state">
-          <p>No appointments found for this email</p>
+          <div className="empty-icon">📋</div>
+          <h3>No Appointments Found</h3>
+          <p>No appointments found for this email address</p>
         </div>
       )}
 
@@ -140,7 +182,7 @@ export default function MyAppointments() {
             <div className="appointment-header">
               <h3>{a.service_name}</h3>
               <span className={`status-badge ${a.status}`}>
-                {a.status === "confirmed" ? "Confirmed" : "Cancelled"}
+                {a.status === "confirmed" ? "✓ Confirmed" : "✕ Cancelled"}
               </span>
             </div>
             <div className="appointment-details">
@@ -159,7 +201,7 @@ export default function MyAppointments() {
               <div className="detail-row">
                 <span className="detail-label">Price</span>
                 <span>
-                  ${a.price} · {a.duration_minutes} min
+                  Rs.{a.price} · {a.duration_minutes} min
                 </span>
               </div>
               {a.notes && (
@@ -171,14 +213,14 @@ export default function MyAppointments() {
             </div>
             {a.status === "confirmed" && (
               <div className="appointment-actions">
-                <button className="btn btn-outline" onClick={() => openReschedule(a)}>
-                  Reschedule
+                <button className="btn btn-outline btn-sm" onClick={() => openReschedule(a)}>
+                  🔄 Reschedule
                 </button>
                 <button className="btn btn-primary btn-sm" onClick={() => setReviewModal(a.id)}>
-                  Leave Review
+                  ⭐ Leave Review
                 </button>
-                <button className="btn btn-danger" onClick={() => cancelAppointment(a.id)}>
-                  Cancel
+                <button className="btn btn-danger btn-sm" onClick={() => cancelAppointment(a.id)}>
+                  ✕ Cancel
                 </button>
               </div>
             )}

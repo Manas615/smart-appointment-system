@@ -153,7 +153,6 @@ function ProvidersTab() {
 
   useEffect(() => {
     loadProviders();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const openEdit = (p) => {

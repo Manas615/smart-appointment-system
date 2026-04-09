@@ -1,0 +1,299 @@
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8
+backend-1  | /app/node_modules/bindings/bindings.js:121
+backend-1  |         throw e;
+backend-1  |         ^
+backend-1  | 
+backend-1  | Error: The module '/app/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
+backend-1  | was compiled against a different Node.js version using
+backend-1  | NODE_MODULE_VERSION 127. This version of Node.js requires
+backend-1  | NODE_MODULE_VERSION 108. Please try re-compiling or re-installing
+backend-1  | the module (for instance, using `npm rebuild` or `npm install`).
+backend-1  |     at Module._extensions..node (node:internal/modules/cjs/loader:1460:18)
+backend-1  |     at Module.load (node:internal/modules/cjs/loader:1203:32)
+backend-1  |     at Module._load (node:internal/modules/cjs/loader:1019:12)
+backend-1  |     at Module.require (node:internal/modules/cjs/loader:1231:19)
+backend-1  |     at require (node:internal/modules/helpers:177:18)
+backend-1  |     at bindings (/app/node_modules/bindings/bindings.js:112:48)
+backend-1  |     at new Database (/app/node_modules/better-sqlite3/lib/database.js:48:64)
+backend-1  |     at Object.<anonymous> (/app/db.js:7:16)
+backend-1  |     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+backend-1  |     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10) {
+backend-1  |   code: 'ERR_DLOPEN_FAILED'
+backend-1  | }
+backend-1  | 
+backend-1  | Node.js v18.20.8

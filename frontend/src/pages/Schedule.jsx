@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { api } from "../api";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../components/Toast";
@@ -14,22 +14,32 @@ export default function Schedule() {
 
   const providerId = user?.providerId;
 
+  // Generate next 14 day options
+  const dateOptions = [];
+  const today = new Date();
+  for (let i = 0; i < 14; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    dateOptions.push(d.toISOString().split("T")[0]);
+  }
+
   // Load upcoming appointments for this provider
-  useEffect(() => {
+  const fetchSchedule = useCallback(async () => {
     if (!providerId) return;
-    const fetchSchedule = async () => {
-      setLoading(true);
-      try {
-        const data = await api.getProviderSchedule(providerId, selectedDate || null);
-        setAppointments(data);
-      } catch (err) {
-        toast.error(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchSchedule();
+    setLoading(true);
+    try {
+      const data = await api.getProviderSchedule(providerId, selectedDate || null);
+      setAppointments(data);
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
   }, [providerId, selectedDate, toast]);
+
+  useEffect(() => {
+    fetchSchedule();
+  }, [fetchSchedule]);
 
   // Load slots for the selected date
   useEffect(() => {
@@ -59,30 +69,50 @@ export default function Schedule() {
     }
   };
 
-  // Generate next 14 day options
-  const dateOptions = [];
-  const today = new Date();
-  for (let i = 0; i < 14; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() + i);
-    dateOptions.push(d.toISOString().split("T")[0]);
-  }
-
   if (!providerId) {
     return (
       <div className="page-container">
         <div className="empty-state">
-          <p>Schedule view is only available for providers. Please log in as a doctor.</p>
+          <div className="empty-icon">🩺</div>
+          <h3>Provider Access Required</h3>
+          <p>Schedule view is only available for providers. Please log in as a doctor and select your profile.</p>
         </div>
       </div>
     );
   }
+
+  const totalBooked = selectedDate
+    ? slots.filter((s) => !s.is_available).length
+    : appointments.length;
+  const totalAvailable = selectedDate
+    ? slots.filter((s) => s.is_available).length
+    : 0;
 
   return (
     <div className="page-container">
       <div className="page-header">
         <h1>My Schedule</h1>
         <p>View your daily appointments and manage time slots</p>
+      </div>
+
+      {/* Quick stats */}
+      <div className="schedule-quick-stats">
+        <div className="sqs-item">
+          <span className="sqs-value">{appointments.length}</span>
+          <span className="sqs-label">{selectedDate ? "Day" : "Upcoming"} Appointments</span>
+        </div>
+        {selectedDate && (
+          <>
+            <div className="sqs-item booked">
+              <span className="sqs-value">{totalBooked}</span>
+              <span className="sqs-label">Booked Slots</span>
+            </div>
+            <div className="sqs-item available">
+              <span className="sqs-value">{totalAvailable}</span>
+              <span className="sqs-label">Available Slots</span>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Date Filter */}
@@ -112,8 +142,8 @@ export default function Schedule() {
         {/* Appointments Panel */}
         <div className="schedule-panel">
           <h2>
-            Appointments
-            {selectedDate && ` - ${selectedDate}`}
+            📋 Appointments
+            {selectedDate && ` — ${new Date(selectedDate + "T00:00:00").toLocaleDateString("en-IN", { weekday: "long", month: "long", day: "numeric" })}`}
             <span className="count-badge">{appointments.length}</span>
           </h2>
 
@@ -121,7 +151,12 @@ export default function Schedule() {
             <div className="loading-spinner">Loading schedule...</div>
           ) : appointments.length === 0 ? (
             <div className="empty-state">
-              <p>No appointments {selectedDate ? "on this date" : "upcoming"}</p>
+              <div className="empty-icon">📭</div>
+              <h3>No Appointments</h3>
+              <p>No appointments {selectedDate ? "on this date" : "upcoming"}.</p>
+              <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", marginTop: "0.5rem" }}>
+                Patients can book via the &quot;Book&quot; page.
+              </p>
             </div>
           ) : (
             <div className="schedule-list">
@@ -137,11 +172,11 @@ export default function Schedule() {
                     <strong>{a.patient_name}</strong>
                     <span>{a.service_name}</span>
                     <span className="schedule-meta">
-                      {a.duration_minutes} min - Rs.{a.price}
+                      {a.duration_minutes} min · Rs.{a.price}
                     </span>
-                    {a.notes && <span className="schedule-notes">{a.notes}</span>}
+                    {a.notes && <span className="schedule-notes">📝 {a.notes}</span>}
                   </div>
-                  <span className="status-badge confirmed">Confirmed</span>
+                  <span className="status-badge confirmed">✓ Confirmed</span>
                 </div>
               ))}
             </div>
@@ -152,7 +187,7 @@ export default function Schedule() {
         {selectedDate && (
           <div className="schedule-panel">
             <h2>
-              Time Slots
+              ⏰ Time Slots
               <span className="count-badge">{slots.length}</span>
             </h2>
 
@@ -171,14 +206,14 @@ export default function Schedule() {
                       {s.start_time} - {s.end_time}
                     </span>
                     <span className={`slot-status ${s.is_available ? "open" : "taken"}`}>
-                      {s.is_available ? "Available" : "Booked"}
+                      {s.is_available ? "🟢 Available" : "🔴 Booked"}
                     </span>
                     {s.is_available ? (
                       <button className="btn btn-danger btn-sm" onClick={() => deleteSlot(s.id)}>
                         Remove
                       </button>
                     ) : (
-                      <span className="slot-locked">Locked</span>
+                      <span className="slot-locked">🔒 Locked</span>
                     )}
                   </div>
                 ))}

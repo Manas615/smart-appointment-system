@@ -4,13 +4,13 @@ import ThemeToggle from "./ThemeToggle";
 import { useAuth, ROLE_ACCESS, ROLE_LABELS } from "../context/AuthContext";
 
 const allNavLinks = [
-  { path: "/", label: "Home" },
-  { path: "/providers", label: "Providers" },
-  { path: "/book", label: "Book" },
-  { path: "/my-appointments", label: "My Appointments" },
-  { path: "/dashboard", label: "Dashboard" },
-  { path: "/schedule", label: "Schedule" },
-  { path: "/admin", label: "Admin" },
+  { path: "/", label: "Home", icon: "🏠" },
+  { path: "/providers", label: "Providers", icon: "🩺" },
+  { path: "/book", label: "Book", icon: "📅" },
+  { path: "/my-appointments", label: "My Appointments", icon: "📋" },
+  { path: "/dashboard", label: "Dashboard", icon: "📊" },
+  { path: "/schedule", label: "Schedule", icon: "⏰" },
+  { path: "/admin", label: "Admin", icon: "⚙️" },
 ];
 
 export default function Navbar() {
@@ -27,6 +27,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-inner">
         <Link to="/" className="navbar-brand">
+          <span className="brand-icon">💊</span>
           <span className="brand-text">SmartAppoint</span>
         </Link>
 
@@ -60,6 +61,7 @@ export default function Navbar() {
               className={`nav-link ${location.pathname === link.path ? "active" : ""}`}
               onClick={() => setMobileOpen(false)}
             >
+              <span className="nav-icon">{link.icon}</span>
               {link.label}
             </Link>
           ))}
