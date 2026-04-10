@@ -78,11 +78,6 @@ By combining a modern frontend with a structured backend and well-designed datab
 The system follows a **3-tier Layered (Client-Server) architecture** with clear separation between Presentation, Business Logic, and Data layers. Design decisions prioritize **modularity** (each route module handles one domain entity), **low coupling** (frontend communicates with the backend only through a centralized API abstraction), and **high cohesion** (every component has a single, well-defined responsibility).
 
 
-### ER Diagram
-
-<img width="640" height="640" alt="image" src="https://github.com/user-attachments/assets/67b8f842-ec7b-493a-b5a5-f218cb3ede6b" />
-
-
 ### UI Screens
 
 | Page | Description |
