@@ -72,7 +72,7 @@ activeDb.exec(`
 
 // Export a proxy so we can mathematically guarantee DI works seamlessly in tests
 const dbProxy = new Proxy(
-  {},
+  { setTestDb: (testDb) => { activeDb = testDb; } },
   {
     get(target, prop) {
       if (prop === "setTestDb") {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { api } from "../api";
 import { useToast } from "../components/Toast";
 
@@ -144,16 +144,16 @@ function ProvidersTab() {
   const [form, setForm] = useState({ name: "", specialty: "", email: "", phone: "", bio: "" });
   const toast = useToast();
 
-  const loadProviders = () => {
+  const loadProviders = useCallback(() => {
     api
       .getProviders()
       .then(setProviders)
       .finally(() => setLoading(false));
-  };
+  }, []);
 
   useEffect(() => {
     loadProviders();
-  }, []);
+  }, [loadProviders]);
 
   const openEdit = (p) => {
     setForm({
