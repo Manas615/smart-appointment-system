@@ -1,10 +1,17 @@
 const Database = require("better-sqlite3");
+const fs = require("fs");
 const path = require("path");
 
-const dbPath = path.join(__dirname, "appointments.db");
+const defaultDbDir = path.join(__dirname, "data");
+const dbFile = process.env.DB_PATH || path.join(defaultDbDir, "appointments.db");
+const dbDir = path.dirname(dbFile);
+
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
 
 // Default to the real database
-let activeDb = new Database(dbPath);
+let activeDb = new Database(dbFile);
 
 // Enable WAL mode for better concurrency
 activeDb.pragma("journal_mode = WAL");
@@ -72,7 +79,11 @@ activeDb.exec(`
 
 // Export a proxy so we can mathematically guarantee DI works seamlessly in tests
 const dbProxy = new Proxy(
-  { setTestDb: (testDb) => { activeDb = testDb; } },
+  {
+    setTestDb: (testDb) => {
+      activeDb = testDb;
+    },
+  },
   {
     get(target, prop) {
       if (prop === "setTestDb") {
